@@ -26,4 +26,22 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/team', 'PagesController@team')->name('pages.team');
     Route::get('/contact', 'PagesController@contact')->name('pages.contact');
     Route::get('/testimonial', 'PagesController@testimonial')->name('pages.testimonial');
+
+    Route::group(['middleware' => ['guest']], function() {
+        /**
+         * Register Routes
+         */
+        Route::get('/register', 'RegisterController@show')->name('register.show');
+        Route::post('/register', 'RegisterController@register')->name('register.perform');
+
+        Route::get('/login', 'LoginController@show')->name('login.show');
+        Route::post('/login', 'LoginController@login')->name('login.perform');
+
+    });
+
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/my-area', 'AreaController@my_area')->name('area.my_area');
+        Route::get('/admin', 'AreaController@admin')->name('area.admin');
+        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+    });
 });
