@@ -52,7 +52,7 @@
             <a href="{{ route('pages.testimonial') }}" class="nav-item nav-link">Testimonial</a>
             @auth
                 @if (auth()->user()->role == 'admin')
-                    <a href="{{ route('pages.index') }}" class="nav-item nav-link">Admin</a>
+                    <a href="{{ route('area.admin') }}" class="nav-item nav-link">Admin</a>
                 @else
                     <a href="{{ route('area.my_area') }}" class="nav-item nav-link">My Area</a>
                 @endif

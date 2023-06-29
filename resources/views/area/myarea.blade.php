@@ -5,10 +5,10 @@
     <div class="container-fluid bg-dark bg-img p-5 mb-5">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="display-4 text-uppercase text-white">About Us</h1>
+                <h1 class="display-4 text-uppercase text-white">My Area</h1>
                 <a href="">Home</a>
                 <i class="far fa-square text-primary px-2"></i>
-                <a href="">About</a>
+                <a href="">My Area</a>
             </div>
         </div>
     </div>
@@ -18,48 +18,74 @@
     <!-- About Start -->
     <div class="container-fluid pt-5">
         <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">About Us</h2>
-                <h3 class="text-primary text-uppercase">Welcome To De-Links Property Limited</h3>
-            </div>
-            <div class="row gx-5">
-                <div class="col-lg-3 mb-5 mb-lg-0" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="assets/img/Zion park.jpg"
-                            style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-8 pb-5">
-                    <h4 class="mb-4">Vision</h4>
-                    <p class="mb-5">Delinks Property Limited believes that everybody created by God deserve to live in a
-                        decent place. This explains why we are committed to providing affordable landed property and housing
-                        for everyone—irrespective of social class, income level and all else.</p>
-                    <div class="row g-5">
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4"
-                                style="width: 90px; height: 90px;">
-                                <i class="fa fa-heartbeat fa-2x text-white"></i>
-                            </div>
-                            <h4 class="text-uppercase">Our Core Values</h4>
-                            <p class="mb-0">
-                                <li>
-                                    Transparency </li>
-                                <li>Honesty </li>
-                                <li>Customer Satisfaction</li>
-                            </p>
+            <div class="blog-single gray-bg">
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col-lg-9 m-15px-tb">
+                            <article class="article">
+                                <div class="row">
+                                    @foreach ($props as $item)
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h3>{{ $item->property_name }}</h3>
+                                                    <p>{{ $item->property_type }} by {{ $item->inspector }}</p>
+                                                    <p>{{ date('d-F-Y g:i a', strtotime($item->inspection_date)) }}</p>
+                                                    @if ($item->isRequested)
+                                                        <p class="badge bg-warning">Pending request</p>
+                                                    @else
+                                                        <p class="badge bg-success">Request Accepted</p>
+                                                    @endif
+                                                </div>
+                                                <div class="card-footer">
+                                                    @if ($item->inspection_date != null)
+                                                        <a href="{{ 'https://wa.me/' . $item->inspect_url }}"
+                                                            class="btn btn-primary">Connect
+                                                            Now</a> |
+                                                    @endif
+                                                    <a href="{{ url('paynow/' . $item->id) }}" class="btn btn-success">Pay
+                                                        Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </article>
+
                         </div>
-                        <div class="col-sm-6">
-                            <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4"
-                                style="width: 90px; height: 90px;">
-                                <i class="fa fa-award fa-2x text-white"></i>
+                        <div class="col-lg-3 m-15px-tb blog-aside">
+                            <!-- Latest Post -->
+                            <div class="widget widget-latest-post">
+                                <div class="widget-title">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="latest-post-aside media">
+                                        <div class="lpa-left media-body">
+                                            <div class="lpa-title">
+                                                <h5><a href="#">Book Inspect Properties</a></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="latest-post-aside media">
+                                        <div class="lpa-left media-body">
+                                            <div class="lpa-title">
+                                                <h5><a href="#">Inspected Properties</a></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="latest-post-aside media">
+                                        <div class="lpa-left media-body">
+                                            <div class="lpa-title">
+                                                <h5><a href="#">Paid Properties</a></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h4 class="text-uppercase">Our Laurels</h4>
-                            <p class="mb-0">
-                                <li> Best Real Estate Company 2022</li>
-                                <li> Premium Times Real Estate Company of the year (2022) </li>
-                                <li>Real Estate Company of the year (2023)</li>
-                                </li>
-                            </p>
+                            <!-- End Latest Post -->
+
                         </div>
                     </div>
                 </div>

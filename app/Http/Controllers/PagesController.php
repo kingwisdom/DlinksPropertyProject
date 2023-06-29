@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Property;
 
 class PagesController extends Controller
 {
     public function index() 
     {
-        return view('home');
+        $lands = Property::where('type','Land')->get();
+        $cascass = Property::where('type','Cascass House')->get();
+        $complete = Property::where('type','Complete House')->get();
+        return view('home',compact(['lands', $lands], ['cascass',$cascass], ['complete',$complete]));
     }
 
     public function about() 
