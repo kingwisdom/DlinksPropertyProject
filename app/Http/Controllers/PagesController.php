@@ -7,35 +7,35 @@ use App\Models\Property;
 
 class PagesController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        $lands = Property::where('type','Land')->get();
-        $cascass = Property::where('type','Cascass House')->get();
-        $complete = Property::where('type','Complete House')->get();
-        return view('home',compact(['lands', $lands], ['cascass',$cascass], ['complete',$complete]));
+        $lands = Property::where('type', 'Land')->get();
+        $cascass = Property::where('type', 'Cascass House')->get();
+        $complete = Property::where('type', 'Complete House')->get();
+        return view('home', compact('lands', 'cascass', 'complete'));
     }
 
-    public function about() 
+    public function about()
     {
         return view('about');
     }
-    public function products() 
+    public function products()
     {
         return view('products');
     }
-    public function service() 
+    public function service()
     {
         return view('service');
     }
-    public function contact() 
+    public function contact()
     {
         return view('contact');
     }
-    public function team() 
+    public function team()
     {
         return view('team');
     }
-    public function testimonial() 
+    public function testimonial()
     {
         return view('testimonial');
     }

@@ -10,16 +10,19 @@ use App\Models\Inspection;
 class AreaController extends Controller
 {
     //
-    public function admin(){
+    public function admin()
+    {
         $props = Property::all();
-        return view('area.admin_area',compact('props', $props));
+        return view('area.admin_area', compact('props'));
     }
-    public function my_area(){
+    public function my_area()
+    {
         $props = Inspection::all();
-        return view('area.myarea', compact('props', $props));
+        return view('area.myarea', compact('props'));
     }
 
-    public function create_inspection(Request $request){
+    public function create_inspection(Request $request)
+    {
         $task = new Inspection;
         $task->user_id = $request->user_id;
         $task->user_email = $request->user_email;
@@ -33,12 +36,13 @@ class AreaController extends Controller
         return redirect('/')->with('success', "Inspection Booked Successfully.");
     }
 
-    public function paynow($id){
+    public function paynow($id)
+    {
         $data = Property::findOrFail($id);
         $data->user = Auth::user();
         // $data->user_name = Auth::user()->name;
         // $data->user_phone = Auth::user()->phone;
 
-        return view('area.paynow', compact("data",$data));
+        return view('area.paynow', compact("data"));
     }
 }
